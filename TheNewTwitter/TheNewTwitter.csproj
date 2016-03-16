@@ -41,6 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client.cs" />
+    <Compile Include="CommandInvoker.cs" />
+    <Compile Include="ICommand.cs" />
+    <Compile Include="ICommandInterpreter.cs" />
     <Compile Include="ICommandInvoker.cs" />
     <Compile Include="IDisplay.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
