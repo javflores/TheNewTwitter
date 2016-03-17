@@ -41,12 +41,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client.cs" />
+    <Compile Include="CommandInterpreter.cs" />
     <Compile Include="CommandInvoker.cs" />
+    <Compile Include="FollowingCommand.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="ICommandInterpreter.cs" />
     <Compile Include="ICommandInvoker.cs" />
     <Compile Include="IDisplay.cs" />
+    <Compile Include="NoCommand.cs" />
+    <Compile Include="PostingCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadingCommand.cs" />
+    <Compile Include="WallCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
