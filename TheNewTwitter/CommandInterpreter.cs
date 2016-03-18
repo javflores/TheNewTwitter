@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace TheNewTwitter
 {
@@ -11,30 +12,33 @@ namespace TheNewTwitter
 
         public ICommand GetCommand(string action)
         {
-            var parsedAction = ParseAction(action);
+            return ToCommand(ParseAction(action));
+        }
+
+        ICommand ToCommand(IList<string> parsedAction)
+        {
+            var userName = GetUser(parsedAction);
+            if (IsPosting(parsedAction))
+            {
+                return new PostingCommand(userName, GetMessage(parsedAction));
+            }
 
             if (IsReading(parsedAction))
             {
-                return new ReadingCommand();
-            }
-
-            if (IsPosting(parsedAction))
-            {
-                return new PostingCommand();
+                return new ReadingCommand(userName);
             }
 
             if (IsFollowing(parsedAction))
             {
-                return new FollowingCommand();
+                return new FollowingCommand(userName, GetFollowingUser(parsedAction));
             }
 
             if (IsWall(parsedAction))
             {
-                return new WallCommand();
+                return new WallCommand(userName);
             }
 
             return new NoCommand();
-
         }
 
         IList<string> ParseAction(string action)
@@ -57,10 +61,27 @@ namespace TheNewTwitter
             return parsedAction.Contains(FollowingCommandKeyword);
         }
 
-
         bool IsWall(IList<string> parsedAction)
         {
             return parsedAction.Contains(WallCommandKeyword);
         }
+
+        string GetUser(IList<string> parsedAction)
+        {
+            return parsedAction.First();
+        }
+
+        string GetMessage(IList<string> parsedAction)
+        {
+            return parsedAction
+                .Where(word => parsedAction.IndexOf(word) != 0 && parsedAction.IndexOf(word) != 1)
+                .Aggregate((word, nextWord) => word + UserActionSeparator + nextWord);
+        }
+
+        string GetFollowingUser(IList<string> parsedAction)
+        {
+            return parsedAction[2];
+        }
+
     }
 }
