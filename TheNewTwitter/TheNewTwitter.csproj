@@ -43,10 +43,13 @@
     <Compile Include="Client.cs" />
     <Compile Include="CommandInterpreter.cs" />
     <Compile Include="CommandInvoker.cs" />
+    <Compile Include="CommandParametersBuilder.cs" />
+    <Compile Include="CommandTypes.cs" />
     <Compile Include="FollowingCommand.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="ICommandInterpreter.cs" />
     <Compile Include="ICommandInvoker.cs" />
+    <Compile Include="ICommandParametersBuilder.cs" />
     <Compile Include="IDisplay.cs" />
     <Compile Include="NoCommand.cs" />
     <Compile Include="PostingCommand.cs" />

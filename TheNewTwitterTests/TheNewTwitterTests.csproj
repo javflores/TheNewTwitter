@@ -61,6 +61,7 @@
     <Compile Include="ClientTests.cs" />
     <Compile Include="CommandInterpreterTests.cs" />
     <Compile Include="CommandInvokerTers.cs" />
+    <Compile Include="CommandParametersBuilderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

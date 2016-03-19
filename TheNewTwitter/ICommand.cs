@@ -1,9 +1,11 @@
-﻿namespace TheNewTwitter
+﻿using System.Collections.Generic;
+
+namespace TheNewTwitter
 {
     public interface ICommand
     {
-        string UserName { get; }
-        string Parameter { get; }
+        IList<string> Parameters { get; }
+
         string Execute();
     }
 }

@@ -1,10 +1,16 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace TheNewTwitter
 {
     public class CommandInterpreter : ICommandInterpreter
     {
+        readonly ICommandParametersBuilder _parametersBuilder;
+
+        public CommandInterpreter(ICommandParametersBuilder parametersBuilder)
+        {
+            _parametersBuilder = parametersBuilder;
+        }
+
         const string PostingCommandKeyword = "->";
         const string FollowingCommandKeyword = "follows";
         const string WallCommandKeyword = "wall";
@@ -17,25 +23,24 @@ namespace TheNewTwitter
 
         ICommand ToCommand(IList<string> parsedAction)
         {
-            var userName = GetUser(parsedAction);
             if (IsPosting(parsedAction))
             {
-                return new PostingCommand(userName, GetMessage(parsedAction));
+                return new PostingCommand(_parametersBuilder.Build(CommandTypes.Posting, parsedAction));
             }
 
             if (IsReading(parsedAction))
             {
-                return new ReadingCommand(userName);
+                return new ReadingCommand(_parametersBuilder.Build(CommandTypes.Reading, parsedAction));
             }
 
             if (IsFollowing(parsedAction))
             {
-                return new FollowingCommand(userName, GetFollowingUser(parsedAction));
+                return new FollowingCommand(_parametersBuilder.Build(CommandTypes.Following, parsedAction));
             }
 
             if (IsWall(parsedAction))
             {
-                return new WallCommand(userName);
+                return new WallCommand(_parametersBuilder.Build(CommandTypes.Wall, parsedAction));
             }
 
             return new NoCommand();
@@ -65,23 +70,5 @@ namespace TheNewTwitter
         {
             return parsedAction.Contains(WallCommandKeyword);
         }
-
-        string GetUser(IList<string> parsedAction)
-        {
-            return parsedAction.First();
-        }
-
-        string GetMessage(IList<string> parsedAction)
-        {
-            return parsedAction
-                .Where(word => parsedAction.IndexOf(word) != 0 && parsedAction.IndexOf(word) != 1)
-                .Aggregate((word, nextWord) => word + UserActionSeparator + nextWord);
-        }
-
-        string GetFollowingUser(IList<string> parsedAction)
-        {
-            return parsedAction[2];
-        }
-
     }
 }

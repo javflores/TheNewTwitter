@@ -1,13 +1,14 @@
-﻿namespace TheNewTwitter
+﻿using System.Collections.Generic;
+
+namespace TheNewTwitter
 {
     public class WallCommand : ICommand
     {
-        public string UserName { get; }
-        public string Parameter { get; }
+        public IList<string> Parameters { get; }
 
-        public WallCommand(string userName)
+        public WallCommand(IList<string> parameters)
         {
-            UserName = userName;
+            Parameters = parameters;
         }
 
         public string Execute()

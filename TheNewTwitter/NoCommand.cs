@@ -1,9 +1,10 @@
-﻿namespace TheNewTwitter
+﻿using System.Collections.Generic;
+
+namespace TheNewTwitter
 {
     public class NoCommand : ICommand
     {
-        public string UserName { get; }
-        public string Parameter { get; }
+        public IList<string> Parameters { get; } = new List<string>();
 
         public string Execute()
         {

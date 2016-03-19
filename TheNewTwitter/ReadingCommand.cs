@@ -1,13 +1,14 @@
-﻿namespace TheNewTwitter
+﻿using System.Collections.Generic;
+
+namespace TheNewTwitter
 {
     public class ReadingCommand : ICommand
     {
-        public string UserName { get; }
-        public string Parameter { get; }
+        public IList<string> Parameters { get; }
 
-        public ReadingCommand(string userName)
+        public ReadingCommand(IList<string> parameters)
         {
-            UserName = userName;
+            Parameters = parameters;
         }
 
         public string Execute()
