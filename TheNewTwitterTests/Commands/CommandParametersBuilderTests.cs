@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Machine.Specifications;
-using TheNewTwitter;
+using TheNewTwitter.Commands;
 
-namespace TheNewTwitterTests
+namespace TheNewTwitterTests.Commands
 {
     [Subject("CommandParametersBuilder")]
     public class When_building_parameters

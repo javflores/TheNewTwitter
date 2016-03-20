@@ -1,4 +1,6 @@
-﻿namespace TheNewTwitter
+﻿using TheNewTwitter.Commands;
+
+namespace TheNewTwitter
 {
     public class CommandInvoker : ICommandInvoker
     {

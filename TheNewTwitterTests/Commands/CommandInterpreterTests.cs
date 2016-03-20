@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using Machine.Specifications;
-using TheNewTwitter;
+using TheNewTwitter.Commands;
 
-namespace TheNewTwitterTests
+namespace TheNewTwitterTests.Commands
 {
     [Subject("CommandInterpreter")]
     public class When_interpreting_user_action

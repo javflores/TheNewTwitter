@@ -1,6 +1,7 @@
 ﻿using Machine.Specifications;
 using Rhino.Mocks;
 using TheNewTwitter;
+using TheNewTwitter.Commands;
 
 namespace TheNewTwitterTests
 {

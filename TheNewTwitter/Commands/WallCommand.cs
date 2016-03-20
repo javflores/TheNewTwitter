@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace TheNewTwitter
+namespace TheNewTwitter.Commands
 {
-    public class ReadingCommand : ICommand
+    public class WallCommand : ICommand
     {
         public IList<string> Parameters { get; }
 
-        public ReadingCommand(IList<string> parameters)
+        public WallCommand(IList<string> parameters)
         {
             Parameters = parameters;
         }

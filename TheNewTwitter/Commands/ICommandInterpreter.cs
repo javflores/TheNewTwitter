@@ -1,4 +1,4 @@
-﻿namespace TheNewTwitter
+﻿namespace TheNewTwitter.Commands
 {
     public interface ICommandInterpreter
     {
