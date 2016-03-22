@@ -1,14 +1,12 @@
-﻿using System.Collections.Generic;
-
-namespace TheNewTwitter.Commands
+﻿namespace TheNewTwitter.Commands
 {
     public class FollowingCommand : ICommand
     {
-        public IList<string> Parameters { get; }
+        const string FollowingCommandKeyword = "follows";
 
-        public FollowingCommand(IList<string> parameters)
+        public bool CanExecute(string action)
         {
-            Parameters = parameters;
+            return action.Contains(FollowingCommandKeyword);
         }
 
         public string Execute()

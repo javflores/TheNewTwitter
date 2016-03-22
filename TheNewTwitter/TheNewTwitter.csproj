@@ -41,15 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client.cs" />
-    <Compile Include="Commands\CommandInterpreter.cs" />
-    <Compile Include="CommandInvoker.cs" />
-    <Compile Include="Commands\CommandParametersBuilder.cs" />
-    <Compile Include="Commands\CommandTypes.cs" />
     <Compile Include="Commands\FollowingCommand.cs" />
     <Compile Include="Commands\ICommand.cs" />
-    <Compile Include="Commands\ICommandInterpreter.cs" />
-    <Compile Include="ICommandInvoker.cs" />
-    <Compile Include="Commands\ICommandParametersBuilder.cs" />
     <Compile Include="IDisplay.cs" />
     <Compile Include="Commands\NoCommand.cs" />
     <Compile Include="Commands\PostingCommand.cs" />

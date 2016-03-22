@@ -1,20 +1,30 @@
-﻿namespace TheNewTwitter
+﻿using System.Collections.Generic;
+using System.Linq;
+using TheNewTwitter.Commands;
+
+namespace TheNewTwitter
 {
     public class Client
     {
-        readonly ICommandInvoker _commandInvoker;
+        readonly IList<ICommand> _commands;
         readonly IDisplay _display;
 
-        public Client(ICommandInvoker commandInvoker, IDisplay display)
+        public Client(IList<ICommand> commands, IDisplay display)
         {
-            _commandInvoker = commandInvoker;
+            _commands = commands;
             _display = display;
         }
 
-        public void Execute(string action)
+        public void Process(string action)
         {
-            var result = _commandInvoker.Process(action);
+            var command = GetCommand(action);
+            var result = command.Execute();
             _display.Show(result);
+        }
+
+        ICommand GetCommand(string action)
+        {
+            return _commands.FirstOrDefault(command => command.CanExecute(action));
         }
     }
 }

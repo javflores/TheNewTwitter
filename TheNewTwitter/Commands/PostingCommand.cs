@@ -1,14 +1,12 @@
-﻿using System.Collections.Generic;
-
-namespace TheNewTwitter.Commands
+﻿namespace TheNewTwitter.Commands
 {
     public class PostingCommand : ICommand
     {
-        public IList<string> Parameters { get; }
+        const string PostingCommandKeyword = "->";
 
-        public PostingCommand(IList<string> parameters)
+        public bool CanExecute(string action)
         {
-            Parameters = parameters;
+            return action.Contains(PostingCommandKeyword);
         }
 
         public string Execute()

@@ -1,14 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 
 namespace TheNewTwitter.Commands
 {
     public class ReadingCommand : ICommand
     {
-        public IList<string> Parameters { get; }
-
-        public ReadingCommand(IList<string> parameters)
+        public bool CanExecute(string action)
         {
-            Parameters = parameters;
+            return action.All(letter => letter != ' ');
         }
 
         public string Execute()

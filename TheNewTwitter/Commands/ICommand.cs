@@ -1,11 +1,8 @@
-﻿using System.Collections.Generic;
-
-namespace TheNewTwitter.Commands
+﻿namespace TheNewTwitter.Commands
 {
     public interface ICommand
     {
-        IList<string> Parameters { get; }
-
+        bool CanExecute(string action);
         string Execute();
     }
 }

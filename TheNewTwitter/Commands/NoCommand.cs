@@ -4,7 +4,10 @@ namespace TheNewTwitter.Commands
 {
     public class NoCommand : ICommand
     {
-        public IList<string> Parameters { get; } = new List<string>();
+        public bool CanExecute(string action)
+        {
+            return true;
+        }
 
         public string Execute()
         {

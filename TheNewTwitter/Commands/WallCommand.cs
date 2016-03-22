@@ -1,14 +1,12 @@
-﻿using System.Collections.Generic;
-
-namespace TheNewTwitter.Commands
+﻿namespace TheNewTwitter.Commands
 {
     public class WallCommand : ICommand
     {
-        public IList<string> Parameters { get; }
+        const string WallCommandKeyword = "wall";
 
-        public WallCommand(IList<string> parameters)
+        public bool CanExecute(string action)
         {
-            Parameters = parameters;
+            return action.Contains(WallCommandKeyword);
         }
 
         public string Execute()

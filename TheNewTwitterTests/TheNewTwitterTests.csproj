@@ -59,9 +59,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientTests.cs" />
-    <Compile Include="Commands\CommandInterpreterTests.cs" />
-    <Compile Include="CommandInvokerTers.cs" />
-    <Compile Include="Commands\CommandParametersBuilderTests.cs" />
+    <Compile Include="Commands\NoCommandTests.cs" />
+    <Compile Include="Commands\WallCommandTests.cs" />
+    <Compile Include="Commands\PostingCommandTests.cs" />
+    <Compile Include="Commands\ReadingCommandTests.cs" />
+    <Compile Include="Commands\FollowingCommandTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
