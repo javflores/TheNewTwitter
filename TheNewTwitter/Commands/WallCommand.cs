@@ -1,4 +1,7 @@
-﻿namespace TheNewTwitter.Commands
+﻿using System.Collections.Generic;
+using TheNewTwitter.Users;
+
+namespace TheNewTwitter.Commands
 {
     public class WallCommand : ICommand
     {
@@ -9,7 +12,7 @@
             return action.Contains(WallCommandKeyword);
         }
 
-        public string Execute()
+        public string Execute(string action, IEnumerable<User> users)
         {
             throw new System.NotImplementedException();
         }

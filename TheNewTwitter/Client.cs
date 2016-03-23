@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using TheNewTwitter.Commands;
+using TheNewTwitter.Users;
 
 namespace TheNewTwitter
 {
@@ -18,7 +19,7 @@ namespace TheNewTwitter
         public void Process(string action)
         {
             var command = GetCommand(action);
-            var result = command.Execute();
+            var result = command.Execute(action, new List<User>());
             _display.Show(result);
         }
 

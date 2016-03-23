@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using TheNewTwitter.Users;
 
 namespace TheNewTwitter.Commands
 {
@@ -9,7 +11,7 @@ namespace TheNewTwitter.Commands
             return action.All(letter => letter != ' ');
         }
 
-        public string Execute()
+        public string Execute(string action, IEnumerable<User> users)
         {
             throw new System.NotImplementedException();
         }
