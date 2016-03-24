@@ -12,6 +12,8 @@ namespace TheNewTwitterTests.Users
 
         It initializes_empty_wall = () => _user.Wall.ShouldBeEmpty();
 
+        It initializes_empty_following_list = () => _user.Following.ShouldBeEmpty();
+
         Establish context = () =>
         {
             _name = "Juan";

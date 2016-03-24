@@ -49,6 +49,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Commands\ReadingCommand.cs" />
     <Compile Include="Commands\WallCommand.cs" />
+    <Compile Include="Users\Post.cs" />
     <Compile Include="Users\User.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

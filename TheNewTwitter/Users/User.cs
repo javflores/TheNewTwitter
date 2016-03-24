@@ -6,21 +6,13 @@ namespace TheNewTwitter.Users
     {
         public string Name { get; }
         public IList<Post> Wall { get; set; }
+        public IList<string> Following { get; set; }
 
         public User(string name)
         {
             Name = name;
             Wall = new List<Post>();
+            Following = new List<string>();
         }
-    }
-
-    public class Post
-    {
-        public Post(string message)
-        {
-            Message = message;
-        }
-
-        public string Message { get; }
     }
 }
