@@ -12,7 +12,7 @@ namespace TheNewTwitter.Commands
             return action.Contains(WallCommandKeyword);
         }
 
-        public string Execute(string action, IEnumerable<User> users)
+        public IList<string> Execute(string action, IEnumerable<User> users)
         {
             throw new System.NotImplementedException();
         }

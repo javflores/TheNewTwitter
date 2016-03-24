@@ -22,7 +22,7 @@ namespace TheNewTwitterTests
         Establish context = () =>
         {
             _action = "Juan follows Sandro";
-            _result = "Sandro > What a nice weather!";
+            _result = new List<string> { "Sandro > What a nice weather!" };
             _display = MockRepository.GenerateMock<IDisplay>();
 
             _possibleToExecuteCommand = MockRepository.GenerateMock<ICommand>();
@@ -38,7 +38,7 @@ namespace TheNewTwitterTests
 
         static Client _client;
         static string _action;
-        static string _result;
+        static IList<string> _result;
         static IDisplay _display;
         static ICommand _possibleToExecuteCommand;
     }

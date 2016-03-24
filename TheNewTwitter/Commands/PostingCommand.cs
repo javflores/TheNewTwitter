@@ -15,10 +15,10 @@ namespace TheNewTwitter.Commands
             return action.Contains(PostingCommandKeyword);
         }
 
-        public string Execute(string action, IEnumerable<User> users)
+        public IList<string> Execute(string action, IEnumerable<User> users)
         {
             AddNewPost(action, users);
-            return "";
+            return new List<string>();
         }
 
         void AddNewPost(string action, IEnumerable<User> users)

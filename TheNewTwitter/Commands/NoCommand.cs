@@ -10,7 +10,7 @@ namespace TheNewTwitter.Commands
             return true;
         }
 
-        public string Execute(string action, IEnumerable<User> users)
+        public IList<string> Execute(string action, IEnumerable<User> users)
         {
             throw new System.NotImplementedException();
         }

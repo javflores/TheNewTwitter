@@ -48,7 +48,7 @@ namespace TheNewTwitterTests.Commands
     {
         Because of = () => _result = _postingCommand.Execute(_action, _users);
 
-        It returns_empty_string = () => _result.ShouldBeEmpty();
+        It returns_empty_result = () => _result.ShouldBeEmpty();
 
         It includes_post_in_users_wall = () => _user.Wall.Any(post => post.Message == "That was good fun").ShouldBeTrue();
 
@@ -62,7 +62,7 @@ namespace TheNewTwitterTests.Commands
 
         static ICommand _postingCommand;
         static string _action;
-        static string _result;
+        static IList<string> _result;
         static User _user;
         static IEnumerable<User> _users;
     }

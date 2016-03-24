@@ -11,9 +11,12 @@ namespace TheNewTwitter.Commands
             return action.All(letter => letter != ' ');
         }
 
-        public string Execute(string action, IEnumerable<User> users)
+        public IList<string> Execute(string action, IEnumerable<User> users)
         {
-            throw new System.NotImplementedException();
+            return users.Single(user => user.Name == action)
+                .Wall
+                .Select(post => post.Message)
+                .ToList();
         }
     }
 }
