@@ -16,8 +16,12 @@ namespace TheNewTwitter.Commands
 
         public IList<string> Execute(string action, IEnumerable<User> users)
         {
-            return users.Single(user => user.Name == ExtractUser(action))
+            var executingUser = users.Single(user => user.Name == ExtractUser(action));
+            var followingUsersWall = GetFollowingUsersWall(executingUser, users);
+
+            return executingUser
                 .Wall
+                .Concat(followingUsersWall)
                 .Select(post => post.ToUserFormat())
                 .ToList();
         }
@@ -25,6 +29,13 @@ namespace TheNewTwitter.Commands
         string ExtractUser(string action)
         {
             return action.Split(CommandSeparator).First();
+        }
+
+        IList<Post> GetFollowingUsersWall(User executingUser, IEnumerable<User> users)
+        {
+            return users.Where(user => executingUser.Following.Contains(user.Name))
+                .SelectMany(followingUser => followingUser.Wall)
+                .ToList();
         }
     }
 }

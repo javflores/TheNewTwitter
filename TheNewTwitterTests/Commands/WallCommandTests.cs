@@ -50,11 +50,15 @@ namespace TheNewTwitterTests.Commands
 
         It returns_all_posts_for_that_user = () => _wall.ShouldContain("Juan - Today", "Juan - Yesterday");
 
+        It returns_all_posts_for_following_user = () => _wall.ShouldContain("Sandro - Wicked", "Sandro - Awesome");
+
         Establish context = () =>
         {
+            var followingUserWall = new List<Post> { new Post("Sandro", "Wicked"), new Post("Sandro", "Awesome") };
+            var followingUser = new User("Sandro") { Wall = followingUserWall };
             var userPosts = new List<Post> { new Post("Juan", "Today"), new Post("Juan", "Yesterday") };
-            var user = new User("Juan") {Wall = userPosts};
-            _users = new List<User> {user};
+            var user = new User("Juan") {Wall = userPosts, Following = new[] {followingUser.Name}};
+            _users = new List<User> { user, followingUser };
 
             _wallCommand = new WallCommand();
         };
