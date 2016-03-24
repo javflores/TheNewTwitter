@@ -5,14 +5,12 @@ namespace TheNewTwitter.Users
     public class User
     {
         public string Name { get; }
-        public IList<Post> Wall { get; set; }
-        public IList<string> Following { get; set; }
+        public IList<Post> Wall { get; set; } = new List<Post>();
+        public IList<string> Following { get; set; } = new List<string>();
 
         public User(string name)
         {
             Name = name;
-            Wall = new List<Post>();
-            Following = new List<string>();
         }
     }
 }

@@ -56,12 +56,12 @@ namespace TheNewTwitterTests.Commands
             _messagesInWall = new List<string> { "This is awesome", "Heading to a new LSCC talk!"};
             var wall = new List<Post>()
             {
-                new Post(_messagesInWall[0]),
-                new Post(_messagesInWall[1])
+                new Post("Juan", _messagesInWall[0]),
+                new Post("Juan", _messagesInWall[1])
             };
 
             var user = new User("Juan") {Wall = wall};
-            var other = new User("Sandro") {Wall = new List<Post> {new Post("Sandro wall message")} };
+            var other = new User("Sandro") {Wall = new List<Post> {new Post("Sandro", "Sandro wall message")} };
             _users = new List<User> { user, other };
 
             _readingCommand = new ReadingCommand();

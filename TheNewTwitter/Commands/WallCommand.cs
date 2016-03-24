@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using TheNewTwitter.Users;
 
 namespace TheNewTwitter.Commands
@@ -6,6 +7,7 @@ namespace TheNewTwitter.Commands
     public class WallCommand : ICommand
     {
         const string WallCommandKeyword = "wall";
+        const char CommandSeparator = ' ';
 
         public bool CanExecute(string action)
         {
@@ -14,7 +16,15 @@ namespace TheNewTwitter.Commands
 
         public IList<string> Execute(string action, IEnumerable<User> users)
         {
-            throw new System.NotImplementedException();
+            return users.Single(user => user.Name == ExtractUser(action))
+                .Wall
+                .Select(post => post.ToUserFormat())
+                .ToList();
+        }
+
+        string ExtractUser(string action)
+        {
+            return action.Split(CommandSeparator).First();
         }
     }
 }
