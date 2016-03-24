@@ -50,7 +50,7 @@ namespace TheNewTwitterTests.Commands
 
         It returns_empty_result = () => _result.ShouldBeEmpty();
 
-        It includes_post_in_users_wall = () => _user.Wall.Any(post => post.Message == "That was good fun").ShouldBeTrue();
+        It includes_post_in_users_timeline = () => _user.Timeline.Any(post => post.Message == "That was good fun").ShouldBeTrue();
 
         Establish context = () =>
         {

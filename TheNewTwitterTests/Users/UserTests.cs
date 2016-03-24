@@ -10,7 +10,7 @@ namespace TheNewTwitterTests.Users
 
         It assigns_name = () => _user.Name.ShouldEqual(_name);
 
-        It initializes_empty_wall = () => _user.Wall.ShouldBeEmpty();
+        It initializes_empty_timeline = () => _user.Timeline.ShouldBeEmpty();
 
         It initializes_empty_following_list = () => _user.Following.ShouldBeEmpty();
 

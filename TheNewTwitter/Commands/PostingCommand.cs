@@ -28,7 +28,7 @@ namespace TheNewTwitter.Commands
             var post = new Post(userName, parsedAction.Item2);
 
             users.Where(user => user.Name == userName)
-                .Select(user => user.Wall)
+                .Select(user => user.Timeline)
                 .First()
                 .Add(post);
         }

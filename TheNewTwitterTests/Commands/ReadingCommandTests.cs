@@ -43,25 +43,25 @@ namespace TheNewTwitterTests.Commands
     }
 
     [Subject("ReadingCommand")]
-    public class When_user_wants_to_read_given_wall
+    public class When_user_wants_to_read_given_timeline
     {
         Because of = () => _result = _readingCommand.Execute("Juan", _users);
 
-        It gets_all_posts_for_user = () => _result.ShouldContainOnly(_messagesInWall);
+        It gets_all_posts_for_user = () => _result.ShouldContainOnly(_messagesInTimeline);
 
-        It does_not_get_other_users_messages = () => _result.ShouldNotContain("Sandro wall message");
+        It does_not_get_other_users_messages = () => _result.ShouldNotContain("This is my timeline!");
 
         Establish context = () =>
         {
-            _messagesInWall = new List<string> { "This is awesome", "Heading to a new LSCC talk!"};
-            var wall = new List<Post>()
+            _messagesInTimeline = new List<string> { "This is awesome", "Heading to a new LSCC talk!"};
+            var usersTimeline = new List<Post>()
             {
-                new Post("Juan", _messagesInWall[0]),
-                new Post("Juan", _messagesInWall[1])
+                new Post("Juan", _messagesInTimeline[0]),
+                new Post("Juan", _messagesInTimeline[1])
             };
 
-            var user = new User("Juan") {Wall = wall};
-            var other = new User("Sandro") {Wall = new List<Post> {new Post("Sandro", "Sandro wall message")} };
+            var user = new User("Juan") {Timeline = usersTimeline};
+            var other = new User("Sandro") {Timeline = new List<Post> {new Post("Sandro", "This is my timeline!")} };
             _users = new List<User> { user, other };
 
             _readingCommand = new ReadingCommand();
@@ -70,6 +70,6 @@ namespace TheNewTwitterTests.Commands
         static IList<string> _result;
         static ICommand _readingCommand;
         static IEnumerable<User> _users;
-        static List<string> _messagesInWall;
+        static List<string> _messagesInTimeline;
     }
 }

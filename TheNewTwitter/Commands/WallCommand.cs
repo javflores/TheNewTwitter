@@ -20,7 +20,7 @@ namespace TheNewTwitter.Commands
             var followingUsersWall = GetFollowingUsersWall(executingUser, users);
 
             return executingUser
-                .Wall
+                .Timeline
                 .Concat(followingUsersWall)
                 .Select(post => post.ToUserFormat())
                 .ToList();
@@ -34,7 +34,7 @@ namespace TheNewTwitter.Commands
         IList<Post> GetFollowingUsersWall(User executingUser, IEnumerable<User> users)
         {
             return users.Where(user => executingUser.Following.Contains(user.Name))
-                .SelectMany(followingUser => followingUser.Wall)
+                .SelectMany(followingUser => followingUser.Timeline)
                 .ToList();
         }
     }
