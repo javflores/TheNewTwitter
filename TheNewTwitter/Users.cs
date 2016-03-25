@@ -11,19 +11,29 @@ namespace TheNewTwitter
 
     public class Users : IUsers
     {
+        List<User> _users;
+
+        public Users()
+        {
+            _users = new List<User>();
+        }
+
         public User Get(string userName)
         {
-            throw new System.NotImplementedException();
+            return _users.Find(user => user.Name == userName);
         }
 
         public void Add(string userName)
         {
-            throw new System.NotImplementedException();
+            if (Get(userName) == null)
+            {
+                _users.Add(new User(userName));
+            }
         }
 
         public IEnumerable<User> All()
         {
-            throw new System.NotImplementedException();
+            return _users;
         }
     }
 }
