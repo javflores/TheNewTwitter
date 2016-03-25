@@ -43,7 +43,6 @@
     <Compile Include="Client.cs" />
     <Compile Include="Commands\FollowingCommand.cs" />
     <Compile Include="Commands\ICommand.cs" />
-    <Compile Include="IDisplay.cs" />
     <Compile Include="Commands\NoCommand.cs" />
     <Compile Include="Commands\PostingCommand.cs" />
     <Compile Include="ITimerWatch.cs" />
