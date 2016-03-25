@@ -11,7 +11,7 @@ namespace TheNewTwitter.Commands
 
         public IList<string> Execute(string action, IEnumerable<User> users)
         {
-            throw new System.NotImplementedException();
+            return new List<string>();
         }
     }
 }
