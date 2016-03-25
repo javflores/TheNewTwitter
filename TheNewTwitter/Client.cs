@@ -12,7 +12,7 @@ namespace TheNewTwitter
         public Client(IList<ICommand> commands)
         {
             _commands = commands;
-            _users = new List<User>() {new User("Bob"), new User("Alice"), new User("Charlie")};
+            _users = new List<User>{};
         }
 
         public IList<string> Process(string action)
