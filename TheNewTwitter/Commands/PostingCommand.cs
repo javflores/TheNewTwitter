@@ -24,7 +24,7 @@ namespace TheNewTwitter.Commands
         {
             var parsedAction = ParseAction(action);
             var userName = parsedAction.Item1;
-            var post = new Post(userName, parsedAction.Item2);
+            var post = new Post(userName, parsedAction.Item2, new TimerWatch());
 
             users.Where(user => user.Name == userName)
                 .Select(user => user.Timeline)

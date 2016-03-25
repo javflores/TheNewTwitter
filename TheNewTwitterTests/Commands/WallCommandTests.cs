@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Machine.Specifications;
+using Rhino.Mocks;
 using TheNewTwitter;
 using TheNewTwitter.Commands;
 
@@ -54,9 +55,19 @@ namespace TheNewTwitterTests.Commands
 
         Establish context = () =>
         {
-            var followingUserTimeLine = new List<Post> { new Post("Sandro", "Wicked"), new Post("Sandro", "Awesome") };
+            var timer = MockRepository.GenerateMock<ITimerWatch>();
+
+            var followingUserTimeLine = new List<Post>
+            {
+                new Post("Sandro", "Wicked", timer),
+                new Post("Sandro", "Awesome", timer)
+            };
             var followingUser = new User("Sandro") { Timeline = followingUserTimeLine };
-            var userPosts = new List<Post> { new Post("Juan", "Today"), new Post("Juan", "Yesterday") };
+            var userPosts = new List<Post>
+            {
+                new Post("Juan", "Today", timer),
+                new Post("Juan", "Yesterday", timer)
+            };
             var user = new User("Juan") {Timeline = userPosts, Following = new[] {followingUser.Name}};
             _users = new List<User> { user, followingUser };
 
