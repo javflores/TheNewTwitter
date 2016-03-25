@@ -1,4 +1,4 @@
-﻿namespace TheNewTwitter.Users
+﻿namespace TheNewTwitter
 {
     public class Post
     {
