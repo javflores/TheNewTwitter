@@ -16,6 +16,7 @@ namespace TheNewTwitter.Commands
         {
             return users.Get(action)
                 .Timeline
+                .OrderByDescending(post => post.PublishedTime)
                 .Select(post => post.ToTimelineFormat())
                 .ToList();
         }

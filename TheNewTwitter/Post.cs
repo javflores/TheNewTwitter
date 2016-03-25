@@ -8,7 +8,7 @@ namespace TheNewTwitter
 
         public string Message { get; }
         public string User { get; }
-        public DateTime PublishedTime { get; private set; }
+        public virtual DateTime PublishedTime { get; private set; }
 
         public Post(string user, string message, ITimerWatch timer)
         {

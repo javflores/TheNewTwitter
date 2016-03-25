@@ -20,10 +20,10 @@ namespace CommandLine
             while (true)
             {
                 var userAction = Console.ReadLine();
-                Console.WriteLine("\n");
                 var result = client.Process(userAction);
-
                 result.ToList().ForEach(Console.WriteLine);
+
+                Console.Write("\n");
             }
         }
 

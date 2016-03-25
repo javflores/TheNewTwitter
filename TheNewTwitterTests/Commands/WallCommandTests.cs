@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Machine.Specifications;
 using Rhino.Mocks;
 using TheNewTwitter;
@@ -51,6 +53,8 @@ namespace TheNewTwitterTests.Commands
 
         It returns_all_posts_for_that_user = () => _wall.ShouldContain("Juan - Today");
 
+        It shows_latest_published_post_first = () => _wall.First().ShouldEqual("Juan - Tomorrow");
+
         It returns_all_posts_for_following_user = () => _wall.ShouldContain("Sandro - Wicked");
 
         Establish context = () =>
@@ -62,9 +66,15 @@ namespace TheNewTwitterTests.Commands
             var followingUserTimeLine = new List<Post> { followingUserPost };
             var followingUser = new User("Sandro") { Timeline = followingUserTimeLine };
 
-            var userPost = MockRepository.GenerateMock<Post>("Juan", "Today", timer);
-            userPost.Stub(p => p.ToWallFormat()).Return("Juan - Today");
-            var userPosts = new List<Post> { userPost };
+            var firstUserPost = MockRepository.GenerateMock<Post>("Juan", "Today", timer);
+            firstUserPost.Stub(p => p.ToWallFormat()).Return("Juan - Today");
+            firstUserPost.Stub(p => p.PublishedTime).Return(DateTime.Now.AddMinutes(-5));
+
+            var secondUserPost = MockRepository.GenerateMock<Post>("Juan", "Today", timer);
+            secondUserPost.Stub(p => p.ToWallFormat()).Return("Juan - Tomorrow");
+            secondUserPost.Stub(p => p.PublishedTime).Return(DateTime.Now.AddMinutes(-2));
+
+            var userPosts = new List<Post> { firstUserPost, secondUserPost };
             var user = new User("Juan") {Timeline = userPosts, Following = new[] {followingUser.Name}};
 
             _users = MockRepository.GenerateMock<IUsers>();
