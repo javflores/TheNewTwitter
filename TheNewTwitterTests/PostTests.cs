@@ -14,7 +14,7 @@ namespace TheNewTwitterTests
 
         It assigns_message = () => _post.Message.ShouldEqual(_message);
 
-        It assigns_current_time = () => _post.Time.ShouldEqual(_currentTime);
+        It assigns_published_time = () => _post.PublishedTime.ShouldEqual(_currentTime);
 
         Establish context = () =>
         {

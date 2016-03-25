@@ -8,7 +8,7 @@ namespace TheNewTwitter
 
         public string Message { get; }
         public string User { get; }
-        public DateTime Time { get; private set; }
+        public DateTime PublishedTime { get; private set; }
 
         public Post(string user, string message, ITimerWatch timer)
         {
@@ -16,12 +16,12 @@ namespace TheNewTwitter
 
             User = user;
             Message = message;
-            Time = _timer.CurrentTime();
+            PublishedTime = _timer.CurrentTime();
         }
 
         public virtual string ToTimelineFormat()
         {
-            return $"{Message} ({_timer.MinutesAgo(Time)} minutes ago)";
+            return $"{Message} ({_timer.MinutesAgo(PublishedTime)} minutes ago)";
         }
 
         public virtual string ToWallFormat()
