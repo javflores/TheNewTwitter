@@ -19,12 +19,12 @@ namespace TheNewTwitter
             Time = _timer.CurrentTime();
         }
 
-        public string ToTimelineFormat()
+        public virtual string ToTimelineFormat()
         {
-            return $"{Message}";
+            return $"{Message} ({_timer.MinutesAgo(Time)} minutes ago)";
         }
 
-        public string ToWallFormat()
+        public virtual string ToWallFormat()
         {
             return $"{User} - {Message}";
         }

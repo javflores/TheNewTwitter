@@ -8,5 +8,10 @@ namespace TheNewTwitter
         {
             return DateTime.Now;
         }
+
+        public int MinutesAgo(DateTime publishedTime)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

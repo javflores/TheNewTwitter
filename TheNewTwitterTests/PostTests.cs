@@ -40,10 +40,14 @@ namespace TheNewTwitterTests
 
         It starts_with_message = () => _result.ShouldStartWith("This is the best post");
 
+        It ends_with_time_happened_since_it_was_posted = () => _result.ShouldEndWith("(5 minutes ago)");
+
         Establish context = () =>
         {
             var timer = MockRepository.GenerateMock<ITimerWatch>();
-            timer.Stub(t => t.CurrentTime()).Return(new DateTime(2020, 1, 1));
+            var publishedTime = new DateTime(2020, 1, 1);
+            timer.Stub(t => t.CurrentTime()).Return(publishedTime);
+            timer.Stub(t => t.MinutesAgo(publishedTime)).Return(5);
 
             _post = new Post("Juan", "This is the best post", timer);
         };
