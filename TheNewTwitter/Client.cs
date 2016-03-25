@@ -7,16 +7,18 @@ namespace TheNewTwitter
     public class Client
     {
         readonly IList<ICommand> _commands;
+        IList<User> _users;
 
         public Client(IList<ICommand> commands)
         {
             _commands = commands;
+            _users = new List<User>() {new User("Bob"), new User("Alice"), new User("Charlie")};
         }
 
         public IList<string> Process(string action)
         {
             var command = GetCommand(action);
-            return command.Execute(action, new List<User>());
+            return command.Execute(action, _users);
         }
 
         ICommand GetCommand(string action)

@@ -14,7 +14,7 @@ namespace TheNewTwitterTests
 
         It should_check_if_command_can_execute = () => _possibleToExecuteCommand.AssertWasCalled(x => x.CanExecute(_action));
 
-        It should_execute_command = () => _possibleToExecuteCommand.AssertWasCalled(x => x.Execute(_action, Enumerable.Empty<User>()));
+        It should_execute_command = () => _possibleToExecuteCommand.AssertWasCalled(x => x.Execute(Arg<string>.Matches(a => a == _action), Arg<IEnumerable<User>>.Is.Anything));
 
         It returns_command_result = () => _result.ShouldEqual(_commandResult);
 
@@ -25,7 +25,7 @@ namespace TheNewTwitterTests
 
             _possibleToExecuteCommand = MockRepository.GenerateMock<ICommand>();
             _possibleToExecuteCommand.Stub(x => x.CanExecute(_action)).Return(true);
-            _possibleToExecuteCommand.Stub(x => x.Execute(_action, Enumerable.Empty<User>())).Return(_commandResult);
+            _possibleToExecuteCommand.Stub(x => x.Execute(Arg<string>.Is.Anything, Arg<IEnumerable<User>>.Is.Anything)).Return(_commandResult);
 
             var cannotExecuteCommand = MockRepository.GenerateMock<ICommand>();
             cannotExecuteCommand.Stub(x => x.CanExecute(_action)).Return(false);
