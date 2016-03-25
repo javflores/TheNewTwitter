@@ -11,7 +11,8 @@ namespace TheNewTwitter
 
         public int MinutesAgo(DateTime publishedTime)
         {
-            throw new NotImplementedException();
+            var now = DateTime.Now;
+            return (now.Hour - publishedTime.Hour) * 60 + now.Minute - publishedTime.Minute;
         }
     }
 }
