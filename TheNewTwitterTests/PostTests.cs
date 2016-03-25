@@ -34,9 +34,28 @@ namespace TheNewTwitterTests
     }
 
     [Subject("Post")]
-    public class When_getting_post_in_user_format
+    public class When_getting_post_in_timeline_format
     {
-        Because of = () => _result = _post.ToUserFormat();
+        Because of = () => _result = _post.ToTimelineFormat();
+
+        It starts_with_message = () => _result.ShouldStartWith("This is the best post");
+
+        Establish context = () =>
+        {
+            var timer = MockRepository.GenerateMock<ITimerWatch>();
+            timer.Stub(t => t.CurrentTime()).Return(new DateTime(2020, 1, 1));
+
+            _post = new Post("Juan", "This is the best post", timer);
+        };
+
+        static string _result;
+        static Post _post;
+    }
+
+    [Subject("Post")]
+    public class When_getting_post_in_wall_format
+    {
+        Because of = () => _result = _post.ToWallFormat();
 
         It starts_with_name_of_user_who_wrote_post = () => _result.ShouldStartWith("Juan");
 

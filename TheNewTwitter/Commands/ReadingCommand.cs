@@ -16,7 +16,7 @@ namespace TheNewTwitter.Commands
         {
             return users.Single(user => user.Name == action)
                 .Timeline
-                .Select(post => post.Message)
+                .Select(post => post.ToTimelineFormat())
                 .ToList();
         }
     }

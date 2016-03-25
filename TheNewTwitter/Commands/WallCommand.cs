@@ -21,7 +21,7 @@ namespace TheNewTwitter.Commands
             return executingUser
                 .Timeline
                 .Concat(followingUsersWall)
-                .Select(post => post.ToUserFormat())
+                .Select(post => post.ToWallFormat())
                 .ToList();
         }
 
