@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Machine.Specifications;
+using Rhino.Mocks;
 using TheNewTwitter;
 using TheNewTwitter.Commands;
 
@@ -52,11 +53,16 @@ namespace TheNewTwitterTests.Commands
 
         It includes_post_in_users_timeline = () => _user.Timeline.Any(post => post.Message == "That was good fun").ShouldBeTrue();
 
+        It tells_to_add_user = () => _users.AssertWasCalled(users => users.Add("Juan"));
+
         Establish context = () =>
         {
-            _action = "Juan -> That was good fun";
             _user = new User("Juan");
-            _users = new List<User> {_user};
+            _users = MockRepository.GenerateMock<IUsers>();
+            _users.Stub(u => u.Add("Juan"));
+            _users.Stub(u => u.Get("Juan")).Return(_user);
+
+            _action = "Juan -> That was good fun";
             _postingCommand = new PostingCommand();
         };
 
@@ -64,6 +70,6 @@ namespace TheNewTwitterTests.Commands
         static string _action;
         static IList<string> _result;
         static User _user;
-        static IEnumerable<User> _users;
+        static IUsers _users;
     }
 }

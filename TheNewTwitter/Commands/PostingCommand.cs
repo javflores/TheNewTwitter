@@ -14,21 +14,22 @@ namespace TheNewTwitter.Commands
             return action.Contains(PostingCommandKeyword);
         }
 
-        public IList<string> Execute(string action, IEnumerable<User> users)
+        public IList<string> Execute(string action, IUsers users)
         {
             AddNewPost(action, users);
             return new List<string>();
         }
 
-        void AddNewPost(string action, IEnumerable<User> users)
+        void AddNewPost(string action, IUsers users)
         {
             var parsedAction = ParseAction(action);
             var userName = parsedAction.Item1;
+
+            users.Add(userName);
             var post = new Post(userName, parsedAction.Item2, new TimerWatch());
 
-            users.Where(user => user.Name == userName)
-                .Select(user => user.Timeline)
-                .First()
+            users.Get(parsedAction.Item1)
+                .Timeline
                 .Add(post);
         }
 

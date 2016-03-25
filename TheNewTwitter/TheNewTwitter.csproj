@@ -45,6 +45,7 @@
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\NoCommand.cs" />
     <Compile Include="Commands\PostingCommand.cs" />
+    <Compile Include="Commands\Users.cs" />
     <Compile Include="ITimerWatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Commands\ReadingCommand.cs" />

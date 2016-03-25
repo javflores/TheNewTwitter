@@ -9,7 +9,7 @@ namespace TheNewTwitter.Commands
             return true;
         }
 
-        public IList<string> Execute(string action, IEnumerable<User> users)
+        public IList<string> Execute(string action, IUsers users)
         {
             return new List<string>();
         }

@@ -14,7 +14,7 @@ namespace TheNewTwitter.Commands
             return action.Contains(FollowingCommandKeyword);
         }
 
-        public IList<string> Execute(string action, IEnumerable<User> users)
+        public IList<string> Execute(string action, IUsers users)
         {
             var parsedAction = ParseAction(action);
             AddFollowingUser(parsedAction, users);
@@ -28,9 +28,9 @@ namespace TheNewTwitter.Commands
             return new Tuple<string, string>(parseAction[0], parseAction[2]);
         }
 
-        void AddFollowingUser(Tuple<string, string> parsedAction, IEnumerable<User> users)
+        void AddFollowingUser(Tuple<string, string> parsedAction, IUsers users)
         {
-            users.Single(user => user.Name == parsedAction.Item1)
+            users.Get(parsedAction.Item1)
                 .Following
                 .Add(parsedAction.Item2);
         }

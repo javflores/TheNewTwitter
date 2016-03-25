@@ -67,13 +67,16 @@ namespace TheNewTwitterTests.Commands
             var userPosts = new List<Post> { userPost };
             var user = new User("Juan") {Timeline = userPosts, Following = new[] {followingUser.Name}};
 
-            _users = new List<User> { user, followingUser };
+            _users = MockRepository.GenerateMock<IUsers>();
+            _users.Stub(u => u.Get(followingUser.Name)).Return(followingUser);
+            _users.Stub(u => u.Get(user.Name)).Return(user);
+            _users.Stub(u => u.All()).Return(new List<User> { user, followingUser });
 
             _wallCommand = new WallCommand();
         };
 
         static IList<string> _wall;
-        static IList<User> _users;
+        static IUsers _users;
         static ICommand _wallCommand;
     }
 }

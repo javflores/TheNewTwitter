@@ -7,12 +7,12 @@ namespace TheNewTwitter
     public class Client
     {
         readonly IList<ICommand> _commands;
-        IList<User> _users;
+        IUsers _users;
 
-        public Client(IList<ICommand> commands)
+        public Client(IList<ICommand> commands, IUsers users)
         {
             _commands = commands;
-            _users = new List<User>{};
+            _users = users;
         }
 
         public IList<string> Process(string action)

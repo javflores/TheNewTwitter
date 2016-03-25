@@ -12,9 +12,9 @@ namespace TheNewTwitter.Commands
             return action.All(letter => letter != CommandSeparator);
         }
 
-        public IList<string> Execute(string action, IEnumerable<User> users)
+        public IList<string> Execute(string action, IUsers users)
         {
-            return users.Single(user => user.Name == action)
+            return users.Get(action)
                 .Timeline
                 .Select(post => post.ToTimelineFormat())
                 .ToList();

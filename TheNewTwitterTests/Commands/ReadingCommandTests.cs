@@ -66,14 +66,16 @@ namespace TheNewTwitterTests.Commands
 
             var user = new User("Juan") {Timeline = usersTimeline};
             var other = new User("Sandro") {Timeline = new List<Post> {MockRepository.GenerateMock<Post>("Sandro", "This is my timeline!", timer)} };
-            _users = new List<User> { user, other };
-
+            _users = MockRepository.GenerateMock<IUsers>();
+            _users.Stub(u => u.Get("Sandro")).Return(other);
+            _users.Stub(u => u.Get("Juan")).Return(user);
+       
             _readingCommand = new ReadingCommand();
         };
 
         static IList<string> _result;
         static ICommand _readingCommand;
-        static IEnumerable<User> _users;
+        static IUsers _users;
         static List<string> _messagesInTimeline;
     }
 }

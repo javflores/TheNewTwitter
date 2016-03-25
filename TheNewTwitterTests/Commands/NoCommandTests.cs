@@ -24,7 +24,7 @@ namespace TheNewTwitterTests.Commands
     [Subject("NoCommand")]
     public class When_executing_no_command
     {
-        Because of = () => _result = _noCommand.Execute("weird command", new List<User>());
+        Because of = () => _result = _noCommand.Execute("weird command", new Users());
 
         It returns_empty_result = () => _result.ShouldBeEmpty();
 

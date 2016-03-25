@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Machine.Specifications;
+using Rhino.Mocks;
 using TheNewTwitter;
 using TheNewTwitter.Commands;
 
@@ -55,14 +56,16 @@ namespace TheNewTwitterTests.Commands
         {
             _user = new User("Juan");
             var otherUser = new User("Sandro");
-            _allUsers = new List<User> {_user, otherUser};
+            _allUsers = MockRepository.GenerateMock<IUsers>();
+            _allUsers.Stub(users => users.Get("Sandro")).Return(otherUser);
+            _allUsers.Stub(users => users.Get("Juan")).Return(_user);
 
             _followingCommand = new FollowingCommand();
         };
 
         static User _user;
         static ICommand _followingCommand;
-        static IEnumerable<User> _allUsers;
+        static IUsers _allUsers;
         static IList<string> _result;
     }
 }

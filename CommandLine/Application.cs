@@ -12,7 +12,8 @@ namespace CommandLine
         static void Main(string[] args)
         {
             var allCommands = new List<ICommand> { new PostingCommand(), new ReadingCommand(), new FollowingCommand(), new WallCommand(), new NoCommand() };
-            var client = new Client(allCommands);
+            var users = new Users();
+            var client = new Client(allCommands, users);
 
             DisplayWelcomeMessage();
 
