@@ -26,7 +26,7 @@ namespace TheNewTwitter
 
         public virtual string ToWallFormat()
         {
-            return $"{User} - {Message}";
+            return $"{User} - {Message} ({_timer.MinutesAgo(PublishedTime)} minutes ago)";
         }
     }
 }

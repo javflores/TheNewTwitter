@@ -49,26 +49,24 @@ namespace TheNewTwitterTests.Commands
     {
         Because of = () => _wall = _wallCommand.Execute("Juan wall", _users);
 
-        It returns_all_posts_for_that_user = () => _wall.ShouldContain("Juan - Today", "Juan - Yesterday");
+        It returns_all_posts_for_that_user = () => _wall.ShouldContain("Juan - Today");
 
-        It returns_all_posts_for_following_user = () => _wall.ShouldContain("Sandro - Wicked", "Sandro - Awesome");
+        It returns_all_posts_for_following_user = () => _wall.ShouldContain("Sandro - Wicked");
 
         Establish context = () =>
         {
             var timer = MockRepository.GenerateMock<ITimerWatch>();
 
-            var followingUserTimeLine = new List<Post>
-            {
-                new Post("Sandro", "Wicked", timer),
-                new Post("Sandro", "Awesome", timer)
-            };
+            var followingUserPost = MockRepository.GenerateMock<Post>("Sandro", "Wicked", timer);
+            followingUserPost.Stub(p => p.ToWallFormat()).Return("Sandro - Wicked");
+            var followingUserTimeLine = new List<Post> { followingUserPost };
             var followingUser = new User("Sandro") { Timeline = followingUserTimeLine };
-            var userPosts = new List<Post>
-            {
-                new Post("Juan", "Today", timer),
-                new Post("Juan", "Yesterday", timer)
-            };
+
+            var userPost = MockRepository.GenerateMock<Post>("Juan", "Today", timer);
+            userPost.Stub(p => p.ToWallFormat()).Return("Juan - Today");
+            var userPosts = new List<Post> { userPost };
             var user = new User("Juan") {Timeline = userPosts, Following = new[] {followingUser.Name}};
+
             _users = new List<User> { user, followingUser };
 
             _wallCommand = new WallCommand();

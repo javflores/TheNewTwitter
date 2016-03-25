@@ -56,8 +56,10 @@ namespace TheNewTwitterTests.Commands
         {
             var timer = MockRepository.GenerateMock<ITimerWatch>();
             _messagesInTimeline = new List<string> { "This is awesome", "Heading to a new LSCC talk!"};
+
             var firstPost = MockRepository.GenerateMock<Post>("Juan", _messagesInTimeline[0], timer);
             firstPost.Stub(p => p.ToTimelineFormat()).Return(_messagesInTimeline[0]);
+
             var secondPost = MockRepository.GenerateMock<Post>("Juan", _messagesInTimeline[1], timer);
             secondPost.Stub(p => p.ToTimelineFormat()).Return(_messagesInTimeline[1]);
             var usersTimeline = new List<Post> { firstPost, secondPost };
