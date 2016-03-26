@@ -16,10 +16,7 @@ namespace TheNewTwitterTests.Commands
 
             It can_execute_posting_command = () => _canExecute.ShouldBeTrue();
 
-            Establish context = () =>
-            {
-                _action = "Juan -> That was good fun";
-            };
+            Establish context = () => _action = "Juan -> That was good fun";
         }
 
         public class with_user_action_not_containing_arrow
@@ -28,16 +25,10 @@ namespace TheNewTwitterTests.Commands
 
             It can_not_execute_posting_command = () => _canExecute.ShouldBeFalse();
 
-            Establish context = () =>
-            {
-                _action = "Juan";
-            };
+            Establish context = () => _action = "Juan";
         }
 
-        Establish context = () =>
-        {
-            _postingCommand = new PostingCommand();
-        };
+        Establish context = () => _postingCommand = new PostingCommand();
 
         static ICommand _postingCommand;
         static string _action;
@@ -49,20 +40,23 @@ namespace TheNewTwitterTests.Commands
     {
         Because of = () => _result = _postingCommand.Execute(_action, _users);
 
+        It tells_to_add_user = () => _users.AssertWasCalled(users => users.Add(_userName));
+
+        It includes_post_in_users_timeline = () => _user.Timeline.ShouldContain(post => post.Message == _message);
+
         It returns_empty_result = () => _result.ShouldBeEmpty();
-
-        It includes_post_in_users_timeline = () => _user.Timeline.Any(post => post.Message == "That was good fun").ShouldBeTrue();
-
-        It tells_to_add_user = () => _users.AssertWasCalled(users => users.Add("Juan"));
 
         Establish context = () =>
         {
-            _user = new User("Juan");
+            _userName = "Juan";
+            _message = "That was good fun";
+            _action = $"{_userName} -> {_message}";
+            
+            _user = new User(_userName);
             _users = MockRepository.GenerateMock<IUsers>();
-            _users.Stub(u => u.Add("Juan"));
-            _users.Stub(u => u.Get("Juan")).Return(_user);
+            _users.Stub(u => u.Add(_userName));
+            _users.Stub(u => u.Get(_userName)).Return(_user);
 
-            _action = "Juan -> That was good fun";
             _postingCommand = new PostingCommand();
         };
 
@@ -71,5 +65,7 @@ namespace TheNewTwitterTests.Commands
         static IList<string> _result;
         static User _user;
         static IUsers _users;
+        static string _userName;
+        static string _message;
     }
 }

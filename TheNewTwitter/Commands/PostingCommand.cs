@@ -24,13 +24,13 @@ namespace TheNewTwitter.Commands
         {
             var parsedAction = ParseAction(action);
             var userName = parsedAction.Item1;
+            var message = parsedAction.Item2;
 
             users.Add(userName);
-            var post = new Post(userName, parsedAction.Item2, new TimerWatch());
 
             users.Get(parsedAction.Item1)
                 .Timeline
-                .Add(post);
+                .Add(new Post(userName, message, new TimerWatch()));
         }
 
         Tuple<string, string> ParseAction(string action)
