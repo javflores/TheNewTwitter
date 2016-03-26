@@ -21,12 +21,14 @@ namespace TheNewTwitter
 
         public virtual string ToTimelineFormat()
         {
-            return $"{Message} ({_timer.MinutesAgo(PublishedTime)} minutes ago)";
+            var timeAgo = _timer.GetTimeAgo(PublishedTime);
+            return $"{Message} ({timeAgo.Amount} {timeAgo.Unit} ago)";
         }
 
         public virtual string ToWallFormat()
         {
-            return $"{User} - {Message} ({_timer.MinutesAgo(PublishedTime)} minutes ago)";
+            var timeAgo = _timer.GetTimeAgo(PublishedTime);
+            return $"{User} - {Message} ({timeAgo.Amount} {timeAgo.Unit} ago)";
         }
     }
 }

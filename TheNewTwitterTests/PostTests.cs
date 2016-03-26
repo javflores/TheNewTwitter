@@ -40,15 +40,15 @@ namespace TheNewTwitterTests
 
         It starts_with_message = () => _result.ShouldStartWith(_message);
 
-        It ends_with_minutes_ago_since_it_was_published = () => _result.ShouldEndWith($"({_minutesAgo} minutes ago)");
+        It ends_with_time_ago_since_it_was_published = () => _result.ShouldEndWith($"({_timeAgo.Amount} {_timeAgo.Unit} ago)");
 
         Establish context = () =>
         {
             var timer = MockRepository.GenerateMock<ITimerWatch>();
             var publishedTime = new DateTime(2020, 1, 1);
-            _minutesAgo = 5;
+            _timeAgo = new TimeAgo(5, TimeAgo.Minutes);
             timer.Stub(t => t.CurrentTime()).Return(publishedTime);
-            timer.Stub(t => t.MinutesAgo(publishedTime)).Return(_minutesAgo);
+            timer.Stub(t => t.GetTimeAgo(publishedTime)).Return(_timeAgo);
 
             _message = "This is the best post";
             _post = new Post("Juan", _message, timer);
@@ -57,7 +57,7 @@ namespace TheNewTwitterTests
         static string _result;
         static Post _post;
         static string _message;
-        static int _minutesAgo;
+        static TimeAgo _timeAgo;
     }
 
     [Subject("Post")]
@@ -71,15 +71,15 @@ namespace TheNewTwitterTests
 
         It includes_message = () => _result.ShouldContain(_message);
 
-        It ends_with_minutes_ago_it_was_published = () => _result.ShouldEndWith($"({_minutesAgo} minutes ago)");
+        It ends_with_time_ago_it_was_published = () => _result.ShouldEndWith($"({_timeAgo.Amount} {_timeAgo.Unit} ago)");
 
         Establish context = () =>
         {
             var timer = MockRepository.GenerateMock<ITimerWatch>();
             var publishedTime = new DateTime(2020, 1, 1);
-            _minutesAgo = 5;
+            _timeAgo = new TimeAgo(5, TimeAgo.Minutes);
             timer.Stub(t => t.CurrentTime()).Return(publishedTime);
-            timer.Stub(t => t.MinutesAgo(publishedTime)).Return(_minutesAgo);
+            timer.Stub(t => t.GetTimeAgo(publishedTime)).Return(_timeAgo);
             _userName = "Juan";
             _message = "This is the best post";
             _post = new Post(_userName, _message, timer);
@@ -89,6 +89,6 @@ namespace TheNewTwitterTests
         static Post _post;
         static string _userName;
         static string _message;
-        static int _minutesAgo;
+        static TimeAgo _timeAgo;
     }
 }
