@@ -13,7 +13,7 @@ namespace TheNewTwitterTests
     {
         Because of = () => _users = new Users();
 
-        It initializes_with_empty_users_list = () => _users.All().ShouldBeEmpty();
+        It initializes_with_empty_user_list = () => _users.All().ShouldBeEmpty();
 
         static IUsers _users;
     }
@@ -40,7 +40,7 @@ namespace TheNewTwitterTests
     {
         Because of = () => _users.Add(_userName);
 
-        It does_not_add_it_again = () => _users.All().Count(user => user.Name == _userName).ShouldEqual(1);
+        It does_not_add_it_twice = () => _users.All().Count(user => user.Name == _userName).ShouldEqual(1);
 
         Establish context = () =>
         {

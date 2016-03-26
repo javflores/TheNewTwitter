@@ -10,11 +10,11 @@ namespace TheNewTwitterTests
     {
         Because of = () => _post = new Post(_user, _message, _timer);
 
-        It assigns_user = () => _post.User.ShouldEqual(_user);
+        It assigns_user_that_published_it = () => _post.User.ShouldEqual(_user);
 
         It assigns_message = () => _post.Message.ShouldEqual(_message);
 
-        It assigns_published_time = () => _post.PublishedTime.ShouldEqual(_currentTime);
+        It assigns_current_time_as_published_time = () => _post.PublishedTime.ShouldEqual(_currentTime);
 
         Establish context = () =>
         {
@@ -38,22 +38,26 @@ namespace TheNewTwitterTests
     {
         Because of = () => _result = _post.ToTimelineFormat();
 
-        It starts_with_message = () => _result.ShouldStartWith("This is the best post");
+        It starts_with_message = () => _result.ShouldStartWith(_message);
 
-        It ends_with_time_happened_since_it_was_posted = () => _result.ShouldEndWith("(5 minutes ago)");
+        It ends_with_minutes_ago_since_it_was_published = () => _result.ShouldEndWith($"({_minutesAgo} minutes ago)");
 
         Establish context = () =>
         {
             var timer = MockRepository.GenerateMock<ITimerWatch>();
             var publishedTime = new DateTime(2020, 1, 1);
+            _minutesAgo = 5;
             timer.Stub(t => t.CurrentTime()).Return(publishedTime);
-            timer.Stub(t => t.MinutesAgo(publishedTime)).Return(5);
+            timer.Stub(t => t.MinutesAgo(publishedTime)).Return(_minutesAgo);
 
-            _post = new Post("Juan", "This is the best post", timer);
+            _message = "This is the best post";
+            _post = new Post("Juan", _message, timer);
         };
 
         static string _result;
         static Post _post;
+        static string _message;
+        static int _minutesAgo;
     }
 
     [Subject("Post")]
@@ -61,24 +65,30 @@ namespace TheNewTwitterTests
     {
         Because of = () => _result = _post.ToWallFormat();
 
-        It starts_with_name_of_user_who_wrote_post = () => _result.ShouldStartWith("Juan");
+        It starts_with_name_of_user_who_published_it = () => _result.ShouldStartWith(_userName);
 
         It is_formatted_with_hyphern = () => _result.ShouldContain(" - ");
 
-        It includes_message = () => _result.ShouldContain("This is the best post");
+        It includes_message = () => _result.ShouldContain(_message);
 
-        It ends_with_time_happened_since_it_was_posted = () => _result.ShouldEndWith("(5 minutes ago)");
+        It ends_with_minutes_ago_it_was_published = () => _result.ShouldEndWith($"({_minutesAgo} minutes ago)");
 
         Establish context = () =>
         {
             var timer = MockRepository.GenerateMock<ITimerWatch>();
             var publishedTime = new DateTime(2020, 1, 1);
+            _minutesAgo = 5;
             timer.Stub(t => t.CurrentTime()).Return(publishedTime);
-            timer.Stub(t => t.MinutesAgo(publishedTime)).Return(5);
-            _post = new Post("Juan", "This is the best post", timer);
+            timer.Stub(t => t.MinutesAgo(publishedTime)).Return(_minutesAgo);
+            _userName = "Juan";
+            _message = "This is the best post";
+            _post = new Post(_userName, _message, timer);
         };
         
         static string _result;
         static Post _post;
+        static string _userName;
+        static string _message;
+        static int _minutesAgo;
     }
 }

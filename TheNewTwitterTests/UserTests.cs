@@ -14,10 +14,7 @@ namespace TheNewTwitterTests
 
         It initializes_empty_following_list = () => _user.Following.ShouldBeEmpty();
 
-        Establish context = () =>
-        {
-            _name = "Juan";
-        };
+        Establish context = () => _name = "Juan";
 
         static string _name;
         static User _user;
