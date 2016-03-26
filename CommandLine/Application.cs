@@ -21,9 +21,7 @@ namespace CommandLine
             {
                 var userAction = Console.ReadLine();
                 var result = client.Process(userAction);
-                result.ToList().ForEach(Console.WriteLine);
-
-                Console.Write("\n");
+                DisplayUserActionResult(result);
             }
         }
 
@@ -37,6 +35,13 @@ namespace CommandLine
             Console.WriteLine("Following: Subscribe to user’s timeline. Run: User follows OtherUser");
             Console.WriteLine("Wall: View an aggregated list of all subscriptions. Example: User wall");
             Console.WriteLine("___________________________");
+            Console.Write("\n");
+        }
+
+        static void DisplayUserActionResult(IList<string> result)
+        {
+            result.ToList().ForEach(Console.WriteLine);
+            Console.Write("\n");
         }
     }
 }
