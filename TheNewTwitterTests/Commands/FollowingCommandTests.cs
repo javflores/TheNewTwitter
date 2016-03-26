@@ -44,20 +44,18 @@ namespace TheNewTwitterTests.Commands
     }
 
     [Subject("FollowingCommand")]
-    public class When_user_wants_to_follow_other_user
+    public class When_given_user_wants_to_follow_other_user
     {
         Because of = () => _result = _followingCommand.Execute("Juan follows Sandro", _allUsers);
 
-        It returns_empty_result = () => _result.ShouldBeEmpty();
+        It includes_other_user_in_given_user_following_list = () => _user.Following.ShouldContain("Sandro");
 
-        It includes_other_user_in_users_following_list = () => _user.Following.ShouldContain("Sandro");
+        It returns_empty_result = () => _result.ShouldBeEmpty();
 
         Establish context = () =>
         {
             _user = new User("Juan");
-            var otherUser = new User("Sandro");
             _allUsers = MockRepository.GenerateMock<IUsers>();
-            _allUsers.Stub(users => users.Get("Sandro")).Return(otherUser);
             _allUsers.Stub(users => users.Get("Juan")).Return(_user);
 
             _followingCommand = new FollowingCommand();

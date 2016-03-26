@@ -24,8 +24,8 @@ namespace TheNewTwitter.Commands
 
         Tuple<string, string> ParseAction(string action)
         {
-            var parseAction = action.Split(CommandSeparator);
-            return new Tuple<string, string>(parseAction[0], parseAction[2]);
+            var parsedAction = action.Split(CommandSeparator);
+            return new Tuple<string, string>(parsedAction[0], parsedAction[2]);
         }
 
         void AddFollowingUser(Tuple<string, string> parsedAction, IUsers users)
