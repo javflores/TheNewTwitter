@@ -15,10 +15,7 @@ namespace TheNewTwitterTests.Commands
 
             It can_execute_following_command = () => _canExecute.ShouldBeTrue();
 
-            Establish context = () =>
-            {
-                _action = "Juan follows Sandro";
-            };
+            Establish context = () => _action = "Juan follows Sandro";
         }
 
         public class with_user_action_not_containing_follows_keyword
@@ -27,16 +24,10 @@ namespace TheNewTwitterTests.Commands
 
             It can_not_execute_following_command = () => _canExecute.ShouldBeFalse();
 
-            Establish context = () =>
-            {
-                _action = "Juan";
-            };
+            Establish context = () => _action = "Juan";
         }
 
-        Establish context = () =>
-        {
-            _followingCommand = new FollowingCommand();
-        };
+        Establish context = () => _followingCommand = new FollowingCommand();
 
         static ICommand _followingCommand;
         static string _action;

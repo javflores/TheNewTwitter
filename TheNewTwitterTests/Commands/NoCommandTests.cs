@@ -12,10 +12,7 @@ namespace TheNewTwitterTests.Commands
 
         It can_always_be_executed = () => _canExecute.ShouldBeTrue();
 
-        Establish context = () =>
-        {
-            _noCommand = new NoCommand();
-        };
+        Establish context = () => _noCommand = new NoCommand();
 
         static ICommand _noCommand;
         static bool _canExecute;
@@ -28,10 +25,7 @@ namespace TheNewTwitterTests.Commands
 
         It returns_empty_result = () => _result.ShouldBeEmpty();
 
-        Establish context = () =>
-        {
-            _noCommand = new NoCommand();
-        };
+        Establish context = () => _noCommand = new NoCommand();
 
         static IList<string> _result;
         static ICommand _noCommand;

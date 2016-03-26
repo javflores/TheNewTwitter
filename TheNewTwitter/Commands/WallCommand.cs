@@ -15,26 +15,29 @@ namespace TheNewTwitter.Commands
 
         public IList<string> Execute(string action, IUsers users)
         {
-            var executingUser = users.Get(ExtractUser(action));
-            var followingUsersWall = GetFollowingUsersWall(executingUser, users);
+            var executingUser = users.Get(UserName(action));
+            var followingUsersTimelines = GetFollowingUsersTimelines(executingUser, users);
 
             return executingUser
                 .Timeline
-                .Concat(followingUsersWall)
+                .Concat(followingUsersTimelines)
                 .OrderByDescending(post => post.PublishedTime)
                 .Select(post => post.ToWallFormat())
                 .ToList();
         }
 
-        string ExtractUser(string action)
+        string UserName(string action)
         {
             return action.Split(CommandSeparator).First();
         }
 
-        IList<Post> GetFollowingUsersWall(User executingUser, IUsers users)
+        IList<Post> GetFollowingUsersTimelines(User executingUser, IUsers users)
         {
-            return users.All()
-                .Where(user => executingUser.Following.Contains(user.Name))
+            var followingUsers = users
+                .All()
+                .Where(user => executingUser.Following.Contains(user.Name));
+
+            return followingUsers
                 .SelectMany(followingUser => followingUser.Timeline)
                 .ToList();
         }

@@ -17,10 +17,7 @@ namespace TheNewTwitterTests.Commands
 
             It can_execute_wall_command = () => _canExecute.ShouldBeTrue();
 
-            Establish context = () =>
-            {
-                _action = "Juan wall";
-            };
+            Establish context = () => _action = "Juan wall";
         }
 
 
@@ -30,16 +27,10 @@ namespace TheNewTwitterTests.Commands
 
             It can_not_execute_wall_command = () => _canExecute.ShouldBeFalse();
 
-            Establish context = () =>
-            {
-                _action = "Juan";
-            };
+            Establish context = () => _action = "Juan";
         }
 
-        Establish context = () =>
-        {
-            _wallCommand = new WallCommand();
-        };
+        Establish context = () => _wallCommand = new WallCommand();
 
         static ICommand _wallCommand;
         static string _action;
@@ -51,7 +42,7 @@ namespace TheNewTwitterTests.Commands
     {
         Because of = () => _wall = _wallCommand.Execute("Juan wall", _users);
 
-        It returns_all_posts_for_that_user = () => _wall.ShouldContain("Juan - Today");
+        It returns_all_posts_in_user_timeline = () => _wall.ShouldContain("Juan - Today");
 
         It shows_latest_published_post_first = () => _wall.First().ShouldEqual("Juan - Tomorrow");
 
@@ -61,21 +52,21 @@ namespace TheNewTwitterTests.Commands
         {
             var timer = MockRepository.GenerateMock<ITimerWatch>();
 
-            var followingUserPost = MockRepository.GenerateMock<Post>("Sandro", "Wicked", timer);
-            followingUserPost.Stub(p => p.ToWallFormat()).Return("Sandro - Wicked");
-            var followingUserTimeLine = new List<Post> { followingUserPost };
-            var followingUser = new User("Sandro") { Timeline = followingUserTimeLine };
+            var followingUserPost = CreateFakePost("Sandro", "Wicked", 10, timer);
+            var followingUserTimeline = new List<Post> { followingUserPost };
+            var followingUser = new User("Sandro")
+            {
+                Timeline = followingUserTimeline
+            };
 
-            var firstUserPost = MockRepository.GenerateMock<Post>("Juan", "Today", timer);
-            firstUserPost.Stub(p => p.ToWallFormat()).Return("Juan - Today");
-            firstUserPost.Stub(p => p.PublishedTime).Return(DateTime.Now.AddMinutes(-5));
-
-            var secondUserPost = MockRepository.GenerateMock<Post>("Juan", "Today", timer);
-            secondUserPost.Stub(p => p.ToWallFormat()).Return("Juan - Tomorrow");
-            secondUserPost.Stub(p => p.PublishedTime).Return(DateTime.Now.AddMinutes(-2));
-
-            var userPosts = new List<Post> { firstUserPost, secondUserPost };
-            var user = new User("Juan") {Timeline = userPosts, Following = new[] {followingUser.Name}};
+            var firstUserPost = CreateFakePost("Juan", "Today", 5, timer);
+            var secondUserPost = CreateFakePost("Juan", "Tomorrow", 2, timer);
+            var userTimeline = new List<Post> { firstUserPost, secondUserPost };
+            var user = new User("Juan")
+            {
+                Timeline = userTimeline,
+                Following = new[] {followingUser.Name}
+            };
 
             _users = MockRepository.GenerateMock<IUsers>();
             _users.Stub(u => u.Get(followingUser.Name)).Return(followingUser);
@@ -84,6 +75,14 @@ namespace TheNewTwitterTests.Commands
 
             _wallCommand = new WallCommand();
         };
+
+        static Post CreateFakePost(string userName, string message, int minutesAgo, ITimerWatch timer)
+        {
+            var post = MockRepository.GenerateMock<Post>(userName, message, timer);
+            post.Stub(p => p.ToWallFormat()).Return($"{userName} - {message}");
+            post.Stub(p => p.PublishedTime).Return(DateTime.Now.AddMinutes(-minutesAgo));
+            return post;
+        }
 
         static IList<string> _wall;
         static IUsers _users;
