@@ -5,6 +5,7 @@ Console-based social networking application (similar to Twitter)
 
 This application has been created using C# 6 and .Net Framework.
 It uses the standard command line.
+For unit testing, I have used [Machine Specifications](https://github.com/machine/machine.specifications), a BDD-oriented unit test framework for C#.
 
 ## Getting up and running:
 
