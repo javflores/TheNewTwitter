@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TheNewTwitter.Users;
 
 namespace TheNewTwitter.Commands
 {

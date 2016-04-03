@@ -65,10 +65,10 @@
     <Compile Include="Commands\ReadingCommandTests.cs" />
     <Compile Include="Commands\FollowingCommandTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PostTests.cs" />
-    <Compile Include="TimerWatchTests.cs" />
-    <Compile Include="UsersTests.cs" />
-    <Compile Include="UserTests.cs" />
+    <Compile Include="Posts\PostTests.cs" />
+    <Compile Include="Time\TimerWatchTests.cs" />
+    <Compile Include="Users\UsersTests.cs" />
+    <Compile Include="Users\UserTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

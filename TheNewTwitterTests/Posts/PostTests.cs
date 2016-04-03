@@ -2,8 +2,9 @@
 using Machine.Specifications;
 using Rhino.Mocks;
 using TheNewTwitter;
+using TheNewTwitter.Posts;
 
-namespace TheNewTwitterTests
+namespace TheNewTwitterTests.Posts
 {
     [Subject("Post")]
     public class When_creating_post

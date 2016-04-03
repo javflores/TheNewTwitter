@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Machine.Specifications;
 using Rhino.Mocks;
-using TheNewTwitter;
 using TheNewTwitter.Commands;
+using TheNewTwitter.Posts;
+using TheNewTwitter.Users;
 
-namespace TheNewTwitterTests.Commands
+namespace TheNewTwitter
 {
     [Subject("WallCommand")]
     public class When_checking_if_wall_command_can_be_executed

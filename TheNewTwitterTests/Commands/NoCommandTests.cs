@@ -2,6 +2,7 @@
 using Machine.Specifications;
 using TheNewTwitter;
 using TheNewTwitter.Commands;
+using TheNewTwitter.Users;
 
 namespace TheNewTwitterTests.Commands
 {

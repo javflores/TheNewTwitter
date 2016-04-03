@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using TheNewTwitter.Posts;
 
-namespace TheNewTwitter
+namespace TheNewTwitter.Users
 {
     public class User
     {

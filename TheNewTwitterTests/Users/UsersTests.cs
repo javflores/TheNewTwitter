@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Machine.Specifications;
-using TheNewTwitter;
+using TheNewTwitter.Users;
 
-namespace TheNewTwitterTests
+namespace TheNewTwitterTests.Users
 {
     [Subject("Users")]
     public class When_creating_users
     {
-        Because of = () => _users = new Users();
+        Because of = () => _users = new TheNewTwitter.Users.Users();
 
         It initializes_with_empty_user_list = () => _users.All().ShouldBeEmpty();
 
@@ -28,7 +24,7 @@ namespace TheNewTwitterTests
         Establish context = () =>
         {
             _userName = "Juan";
-            _users = new Users();
+            _users = new TheNewTwitter.Users.Users();
         };
 
         static IUsers _users;
@@ -45,7 +41,7 @@ namespace TheNewTwitterTests
         Establish context = () =>
         {
             _userName = "Juan";
-            _users = new Users();
+            _users = new TheNewTwitter.Users.Users();
             _users.Add(_userName);
         };
 
@@ -63,7 +59,7 @@ namespace TheNewTwitterTests
         Establish context = () =>
         {
             _userName = "Juan";
-            _users = new Users();
+            _users = new TheNewTwitter.Users.Users();
             _users.Add(_userName);
         };
 

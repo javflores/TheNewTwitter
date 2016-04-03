@@ -2,7 +2,7 @@
 using Machine.Specifications;
 using TheNewTwitter;
 
-namespace TheNewTwitterTests
+namespace TheNewTwitterTests.Time
 {
     [Subject("TimerWatch")]
     public class When_getting_current_time

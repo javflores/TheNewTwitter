@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TheNewTwitter
+namespace TheNewTwitter.Posts
 {
     public class Post
     {
