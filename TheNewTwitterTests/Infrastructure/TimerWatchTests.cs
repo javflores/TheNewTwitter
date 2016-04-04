@@ -1,8 +1,8 @@
 ﻿using System;
 using Machine.Specifications;
-using TheNewTwitter;
+using TheNewTwitter.Infrasctructure;
 
-namespace TheNewTwitterTests
+namespace TheNewTwitterTests.Infrastructure
 {
     [Subject("TimerWatch")]
     public class When_getting_current_time

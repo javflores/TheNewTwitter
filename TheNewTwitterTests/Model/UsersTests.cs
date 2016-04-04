@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Machine.Specifications;
-using TheNewTwitter;
+using TheNewTwitter.Model;
 
-namespace TheNewTwitterTests
+namespace TheNewTwitterTests.Model
 {
     [Subject("Users")]
     public class When_creating_users

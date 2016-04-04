@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TheNewTwitter
+namespace TheNewTwitter.Infrasctructure
 {
     public interface ITimerWatch
     {

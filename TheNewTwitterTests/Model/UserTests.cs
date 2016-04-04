@@ -1,7 +1,7 @@
 ﻿using Machine.Specifications;
-using TheNewTwitter;
+using TheNewTwitter.Model;
 
-namespace TheNewTwitterTests
+namespace TheNewTwitterTests.Model
 {
     [Subject("User")]
     public class When_creating_user

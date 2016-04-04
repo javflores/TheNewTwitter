@@ -1,4 +1,4 @@
-﻿namespace TheNewTwitter
+﻿namespace TheNewTwitter.Infrasctructure
 {
     public class TimeAgo
     {

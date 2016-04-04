@@ -1,9 +1,10 @@
 ﻿using System;
 using Machine.Specifications;
 using Rhino.Mocks;
-using TheNewTwitter;
+using TheNewTwitter.Infrasctructure;
+using TheNewTwitter.Model;
 
-namespace TheNewTwitterTests
+namespace TheNewTwitterTests.Model
 {
     [Subject("Post")]
     public class When_creating_post

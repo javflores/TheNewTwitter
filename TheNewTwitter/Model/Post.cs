@@ -1,6 +1,7 @@
 ﻿using System;
+using TheNewTwitter.Infrasctructure;
 
-namespace TheNewTwitter
+namespace TheNewTwitter.Model
 {
     public class Post
     {

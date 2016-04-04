@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TheNewTwitter
+namespace TheNewTwitter.Model
 {
     public interface IUsers
     {
