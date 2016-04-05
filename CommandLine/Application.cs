@@ -12,10 +12,28 @@ namespace CommandLine
     {
         static void Main(string[] args)
         {
-            var allCommands = new List<ICommand> { new PostingCommand(), new ReadingCommand(), new FollowingCommand(), new WallCommand(), new NoCommand() };
+            var client = InitializeClient();
+
+            ExecuteApplication(client);
+        }
+
+        static Client InitializeClient()
+        {
+            var allCommands = new List<ICommand>
+            {
+                new PostingCommand(),
+                new ReadingCommand(),
+                new FollowingCommand(),
+                new WallCommand(),
+                new NoCommand()
+            };
             var users = new Users();
             var client = new Client(allCommands, users);
+            return client;
+        }
 
+        static void ExecuteApplication(Client client)
+        {
             DisplayWelcomeMessage();
 
             while (true)
