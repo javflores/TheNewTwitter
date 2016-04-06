@@ -56,26 +56,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Posting.feature.cs">
+    <Compile Include="Features\Posting.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Posting.feature</DependentUpon>
     </Compile>
-    <Compile Include="PostingSteps.cs" />
+    <Compile Include="Steps\PostingSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="Default.srprofile">
+    <None Include="Infrastructure\App.config" />
+    <None Include="Infrastructure\Default.srprofile">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="packages.config" />
-    <None Include="Posting.feature">
+    <None Include="Infrastructure\packages.config" />
+    <None Include="Features\Posting.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Posting.feature.cs</LastGenOutput>
     </None>
-    <None Include="runtests.cmd" />
-    <None Include="SpecRunTestProfile.xsd">
+    <None Include="Infrastructure\runtests.cmd" />
+    <None Include="Infrastructure\SpecRunTestProfile.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

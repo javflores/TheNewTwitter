@@ -3,7 +3,7 @@ using System.Diagnostics;
 using Should;
 using TechTalk.SpecFlow;
 
-namespace AcceptanceTests
+namespace AcceptanceTests.Steps
 {
     [Binding]
     public class PostingSteps
