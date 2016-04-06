@@ -60,6 +60,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\Following.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Following.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Posting.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -72,11 +77,16 @@
     </Compile>
     <Compile Include="Infrastructure\ApplicationProcess.cs" />
     <Compile Include="Infrastructure\TheNewTwitterApplication.cs" />
+    <Compile Include="Steps\FollowingSteps.cs" />
     <Compile Include="Steps\PostingSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\ReadingSteps.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Features\Following.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Following.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\Reading.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Reading1.feature.cs</LastGenOutput>

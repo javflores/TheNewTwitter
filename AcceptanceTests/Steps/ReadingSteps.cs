@@ -1,5 +1,4 @@
-﻿using System;
-using AcceptanceTests.Infrastructure;
+﻿using AcceptanceTests.Infrastructure;
 using Should;
 using TechTalk.SpecFlow;
 
