@@ -61,6 +61,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Posting.feature</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\TheNewTwitterApplication.cs" />
     <Compile Include="Steps\PostingSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
