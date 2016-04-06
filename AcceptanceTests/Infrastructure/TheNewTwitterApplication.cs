@@ -3,11 +3,11 @@ using System.Diagnostics;
 
 namespace AcceptanceTests.Infrastructure
 {
-    public class TheNewTwitterApplication
+    public static class TheNewTwitterApplication
     {
-        readonly Process _application;
+        static Process _application;
 
-        public TheNewTwitterApplication()
+        public static void BootstrapApplication()
         {
             _application = new Process();
             string TheNewTwitterApplicationPath = $"{AppDomain.CurrentDomain.BaseDirectory}/CommandLine.exe";
@@ -20,20 +20,24 @@ namespace AcceptanceTests.Infrastructure
             };
 
             _application.StartInfo = startInfo;
+        }
+
+        public static void Start()
+        {
             _application.Start();
         }
 
-        ~TheNewTwitterApplication()
+        public static void Stop()
         {
             _application.Kill();
         }
 
-        public void PublishMessage(string message)
+        public static void PublishMessage(string message)
         {
             _application.StandardInput.WriteLine(message);
         }
 
-        public string ReadConsole()
+        public static string ReadConsole()
         {
             return _application.StandardOutput.ReadLine();
         }
