@@ -20,11 +20,12 @@ namespace AcceptanceTests.Infrastructure
             };
 
             _application.StartInfo = startInfo;
+            _application.Start();
         }
 
-        public void Start()
+        ~TheNewTwitterApplication()
         {
-            _application.Start();
+            _application.Kill();
         }
 
         public void PublishMessage(string message)
@@ -35,11 +36,6 @@ namespace AcceptanceTests.Infrastructure
         public string ReadConsole()
         {
             return _application.StandardOutput.ReadLine();
-        }
-
-        public void Stop()
-        {
-            _application.Kill();
         }
     }
 }

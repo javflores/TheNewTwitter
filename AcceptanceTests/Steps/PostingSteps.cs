@@ -15,7 +15,6 @@ namespace AcceptanceTests.Steps
         public void GivenIHaveStartedTheNewTwitter()
         {
             _theNewTwitter = new TheNewTwitterApplication();
-            _theNewTwitter.Start();
         }
 
         [When(@"I publish a message to a personal timeline")]
@@ -30,8 +29,6 @@ namespace AcceptanceTests.Steps
             _theNewTwitter.PublishMessage("Alice");
             var timeline = _theNewTwitter.ReadConsole();
             timeline.ShouldContain("I love the weather today");
-
-            _theNewTwitter.Stop();
         }
     }
 }
